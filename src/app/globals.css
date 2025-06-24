@@ -1,4 +1,6 @@
 @import 'tailwindcss';
+/* src/app/globals.css 또는 AppMarkdown.css에 추가 */
+@import 'highlight.js/styles/github.css';
 
 :root {
   --background: #ffffff;

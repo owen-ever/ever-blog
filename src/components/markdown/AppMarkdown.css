@@ -1,0 +1,47 @@
+.md-text {
+  font-family: 'Noto Sans KR', sans-serif;
+
+  /* h1 설정 */
+  h1 {
+    color: #1c6eff;
+  }
+
+  h2 {
+    color: green;
+  }
+
+  /* 링크 설정 */
+  a {
+    color: red;
+  }
+
+  /* 하이라이트 설정 */
+  strong {
+    &.highlight {
+      background-color: #bef9be;
+    }
+    &.search {
+      background-color: #ffff00;
+
+      &.selected {
+        background-color: #ffa500;
+      }
+    }
+  }
+
+  /* 일반 문단 설정 */
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    margin: 0;
+
+    &.italic {
+      font-style: italic;
+    }
+
+    &.strikethrough {
+      text-decoration: line-through;
+    }
+  }
+}
