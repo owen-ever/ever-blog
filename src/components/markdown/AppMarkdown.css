@@ -1,0 +1,230 @@
+.md-text {
+  font-family: 'Noto Sans KR', sans-serif;
+
+  /* h1 설정 */
+  h1 {
+    color: #1c6eff;
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin: 1.5rem 0 1rem 0;
+  }
+
+  h2 {
+    color: green;
+    font-size: 1.875rem;
+    font-weight: 600;
+    margin: 1.25rem 0 0.75rem 0;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 1rem 0 0.5rem 0;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0.75rem 0 0.5rem 0;
+  }
+
+  h5 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0.5rem 0;
+  }
+
+  h6 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0.5rem 0;
+  }
+
+  /* 링크 설정 */
+  a {
+    color: red;
+    text-decoration: underline;
+  }
+
+  a:hover {
+    color: darkred;
+  }
+
+  /* 하이라이트 설정 */
+  strong {
+    font-weight: 700;
+    
+    &.highlight {
+      background-color: #bef9be;
+    }
+    &.search {
+      background-color: #ffff00;
+
+      &.selected {
+        background-color: #ffa500;
+      }
+    }
+  }
+
+  /* 이탤릭 설정 (em 태그) */
+  em {
+    font-style: italic;
+  }
+
+  /* 밑줄 설정 (u 태그) */
+  u {
+    text-decoration: underline;
+  }
+
+  /* 밑줄 + 강조 조합 */
+  u strong, strong u {
+    font-weight: 700;
+    text-decoration: underline;
+  }
+
+  /* 일반 문단 설정 */
+  p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+    margin: 0 0 1rem 0;
+
+    &.italic {
+      font-style: italic;
+    }
+
+    &.strikethrough {
+      text-decoration: line-through;
+    }
+  }
+
+  /* 리스트 설정 */
+  ul, ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+  }
+
+  /* 순서가 있는 리스트 (ol) */
+  ol {
+    list-style-type: decimal !important;
+    counter-reset: list-counter;
+  }
+
+  ol li {
+    display: list-item !important;
+    list-style-type: decimal !important;
+    margin: 0.25rem 0;
+    line-height: 1.6;
+  }
+
+  /* 순서가 없는 리스트 (ul) */
+  ul {
+    list-style-type: disc !important;
+  }
+
+  ul li {
+    display: list-item !important;
+    list-style-type: disc !important;
+    margin: 0.25rem 0;
+    line-height: 1.6;
+  }
+
+  /* 중첩된 리스트 */
+  ul ul {
+    list-style-type: circle !important;
+    margin: 0.5rem 0;
+  }
+
+  ul ul ul {
+    list-style-type: square !important;
+  }
+
+  ol ol {
+    list-style-type: lower-alpha !important;
+  }
+
+  ol ol ol {
+    list-style-type: lower-roman !important;
+  }
+
+  /* 인용구 설정 */
+  blockquote {
+    border-left: 4px solid #e5e7eb;
+    padding-left: 1rem;
+    margin: 1rem 0;
+    font-style: italic;
+    color: #6b7280;
+    background-color: #f9fafb;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    white-space: pre-wrap;
+  }
+
+  blockquote p {
+    margin: 0.5rem 0;
+    line-height: 1.6;
+    white-space: pre-line;
+  }
+
+  blockquote p:first-child {
+    margin-top: 0;
+  }
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* 코드 블록 설정 */
+  pre {
+    background-color: #f3f4f6;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+
+  code {
+    background-color: #f3f4f6;
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.875rem;
+  }
+
+  pre code {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  /* 테이블 설정 */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  th, td {
+    border: 1px solid #d1d5db;
+    padding: 0.5rem;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f9fafb;
+    font-weight: 600;
+  }
+
+  /* 수평선 설정 */
+  hr {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin: 2rem 0;
+  }
+
+  /* 이미지 설정 */
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.375rem;
+  }
+}
