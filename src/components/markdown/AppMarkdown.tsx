@@ -19,7 +19,7 @@ const AppMarkdown = ({ text, isViewMode = true }: AppMarkdownProps) => {
           {text}
         </ReactMarkdown>
       ) : (
-        <ReactMarkdown rehypePlugins={[rehypeRaw, rehypeHighlight]}>{text}</ReactMarkdown>
+        <ReactMarkdown>{text}</ReactMarkdown>
       )}
     </Box>
   );
