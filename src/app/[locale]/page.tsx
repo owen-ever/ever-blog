@@ -1,23 +1,25 @@
-import Link from 'next/link';
-import { getAllPosts } from '@/lib/posts';
+import { Link } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
+import { formatLine } from '@/lib/formatter';
 
 export default function HomePage() {
-  const posts = getAllPosts();
+  const tHome = useTranslations('HomePage');
 
   return (
     <main>
-      <h1>My Blog</h1>
-      <ul className="flex flex-col gap-4">
-        {posts.map(post => (
-          <li key={post.slug} className="border-2 border-blue-500 p-4">
-            <Link href={`/ko/${post.slug}`} className="flex flex-col">
-              <span>{post.meta.title}</span>
-              <span>{post.meta.description}</span>
-              <span>{post.meta.date}</span>
-            </Link>
-          </li>
+      <section>
+        <h1>{tHome('title')}</h1>
+        {formatLine(tHome('description')).map((line, index) => (
+          <p key={index}>{line}</p>
         ))}
-      </ul>
+      </section>
+
+      <section>
+        <div className="flex flex-col gap-4">
+          <Link href="/posts">{tHome('feed')}</Link>
+          <Link href={tHome('github')}>GitHub</Link>
+        </div>
+      </section>
     </main>
   );
 }
