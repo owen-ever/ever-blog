@@ -8,16 +8,22 @@ export default function HomePage() {
   return (
     <main>
       <section>
-        <h1>{tHome('title')}</h1>
+        <div className="text-main text-8xl font-bold">{tHome('title')}</div>
         {formatLine(tHome('description')).map((line, index) => (
-          <p key={index}>{line}</p>
+          <p className="text-colPick text-2xl" key={index}>
+            {line}
+          </p>
         ))}
       </section>
 
       <section>
         <div className="flex flex-col gap-4">
-          <Link href="/posts">{tHome('feed')}</Link>
-          <Link href={tHome('github')}>GitHub</Link>
+          <Link className="text-sub" href="/posts">
+            {tHome('feed')}
+          </Link>
+          <Link className="text-side" href={tHome('github')}>
+            GitHub
+          </Link>
         </div>
       </section>
     </main>
