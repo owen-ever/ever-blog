@@ -13,6 +13,9 @@ const notoSansKR = Noto_Sans_KR({
 export const metadata: Metadata = {
   title: 'Ever.Log',
   description: 'Ever.Log',
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default async function RootLayout({
