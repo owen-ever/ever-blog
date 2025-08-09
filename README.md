@@ -1,6 +1,7 @@
 # Ever Blog
 
 [NextJS](https://nextjs.org/) v15 프레임워크를 기반으로 한 Typescript 템플릿 (App Router)
+AI를 적극 활용하여 개발
 
 ## 시작하기
 

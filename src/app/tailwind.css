@@ -1,0 +1,12 @@
+@import 'tailwindcss';
+@plugin 'daisyui';
+@plugin '@tailwindcss/typography';
+
+@theme inline {
+  --color-background: #f7f7f9;
+  --color-foreground: #0a0a0a;
+  --color-main: #f4a940;
+  --color-sub: #ff5d5d;
+  --color-side: #3f8efc;
+  --color-colPick: #1f1f1f;
+}

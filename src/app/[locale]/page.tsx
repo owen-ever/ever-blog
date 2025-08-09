@@ -1,23 +1,37 @@
-import Link from 'next/link';
-import { getAllPosts } from '@/lib/posts';
+import { Link } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
+import { formatLine } from '@/lib/formatter';
 
 export default function HomePage() {
-  const posts = getAllPosts();
+  const tHome = useTranslations('HomePage');
 
   return (
-    <main>
-      <h1>My Blog</h1>
-      <ul className="flex flex-col gap-4">
-        {posts.map(post => (
-          <li key={post.slug} className="border-2 border-blue-500 p-4">
-            <Link href={`/ko/${post.slug}`} className="flex flex-col">
-              <span>{post.meta.title}</span>
-              <span>{post.meta.description}</span>
-              <span>{post.meta.date}</span>
+    <main className="flex h-screen w-full flex-col gap-y-10 p-10">
+      <div className="text-main text-7xl font-bold lg:text-8xl">{tHome('title')}</div>
+      <div className="flex flex-col gap-y-10 lg:flex-row">
+        <section className="flex h-full w-full flex-col gap-10 lg:w-1/2">
+          <div className="flex flex-col gap-y-4">
+            <div>
+              {formatLine(tHome('description')).map((line, index) => (
+                <p className="text-colPick text-2xl" key={index}>
+                  {line}
+                </p>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="flex h-full w-full flex-col gap-10 lg:w-1/2">
+          <div className="flex flex-col gap-4">
+            <Link className="text-colPick text-4xl font-bold underline" href="/posts">
+              {tHome('feed')}
             </Link>
-          </li>
-        ))}
-      </ul>
+            <Link className="text-colPick text-4xl font-bold underline" href={tHome('github')}>
+              GitHub
+            </Link>
+          </div>
+        </section>
+      </div>
     </main>
   );
 }
