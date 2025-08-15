@@ -26,6 +26,9 @@ export default function HomePage() {
             <Link className="text-colPick text-4xl font-bold underline" href="/posts">
               {tHome('feed')}
             </Link>
+            <Link className="text-colPick text-4xl font-bold underline" href="/resume">
+              {tHome('resume')}
+            </Link>
             <Link className="text-colPick text-4xl font-bold underline" href={tHome('github')}>
               GitHub
             </Link>

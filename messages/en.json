@@ -3,10 +3,14 @@
     "title": "Ever.Log",
     "description": "I aim to create products that resonate with everyone.\nTo build better products, I focus on seeing from the user’s perspective.",
     "feed": "Feed",
+    "resume": "Resume",
     "github": "https://github.com/owen-ever"
   },
   "PostListPage": {
     "title": "Feed",
     "home": "Home"
+  },
+  "ResumePage": {
+    "title": "Resume"
   }
 }
