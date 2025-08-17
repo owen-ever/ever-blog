@@ -2,6 +2,8 @@ import { Link } from '@/i18n/navigation';
 import { formatLine } from '@/lib/formatter';
 import { useTranslations } from 'next-intl';
 
+const githubLink = 'https://github.com/owen-ever';
+
 export default function ResumePage() {
   const tHome = useTranslations('HomePage');
   const tResume = useTranslations('ResumePage');
@@ -52,6 +54,9 @@ export default function ResumePage() {
                   href="mailto:me@owen.kr"
                   className="text-colPick hover:text-main block text-sm underline transition-colors">
                   me@owen.kr
+                </a>
+                <a href={githubLink} className="text-colPick hover:text-main block text-sm underline transition-colors">
+                  github.com/owen-ever
                 </a>
               </div>
             </div>

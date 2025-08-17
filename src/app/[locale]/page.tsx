@@ -2,8 +2,6 @@ import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { formatLine } from '@/lib/formatter';
 
-const githubLink = 'https://github.com/owen-ever';
-
 export default function HomePage() {
   const tHome = useTranslations('HomePage');
 
@@ -30,9 +28,6 @@ export default function HomePage() {
             </Link>
             <Link className="text-colPick text-4xl font-bold underline" href="/resume">
               {tHome('resume')}
-            </Link>
-            <Link className="text-colPick text-4xl font-bold underline" href={githubLink}>
-              {tHome('github')}
             </Link>
           </div>
         </section>
