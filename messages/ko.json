@@ -4,13 +4,14 @@
     "description": "누구에게나 스며들 수 있는 제품을 만드는 것을 목표로 하고 있습니다.\n좋은 제품을 만들기 위해 유저의 시선에 가까워지도록 고민합니다.",
     "feed": "Feed",
     "resume": "Resume",
-    "github": "https://github.com/owen-ever"
+    "github": "GitHub"
   },
   "PostListPage": {
     "title": "Feed",
     "home": "Home"
   },
   "ResumePage": {
-    "title": "Resume"
+    "title": "Resume",
+    "home": "Home"
   }
 }
