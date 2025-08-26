@@ -79,7 +79,7 @@ export default function ResumePage() {
 
   return (
     <main className="flex h-full w-full flex-col gap-y-10 p-10">
-      <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div className="text-main text-7xl font-bold lg:text-8xl">{tResume('title')}</div>
         <div className="flex h-full items-end">
           <Link className="text-colPick text-2xl font-medium underline" href="/">
@@ -91,7 +91,6 @@ export default function ResumePage() {
       <section className="mx-auto w-full">
         <div className="p-0">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
-            {/* <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-8"> */}
             <div className="space-y-3">
               <h2 className="border-b pb-1 text-xs font-semibold tracking-wider text-gray-500 uppercase">Identity</h2>
               <div>
