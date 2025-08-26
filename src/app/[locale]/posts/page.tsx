@@ -1,10 +1,11 @@
+import PostList from '@/components/Post/PostList';
 import { Link } from '@/i18n/navigation';
 import { getAllPosts } from '@/lib/posts';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
-export default function PostListPage() {
-  const tPostList = useTranslations('PostListPage');
-  const posts = getAllPosts();
+export default async function PostListPage() {
+  const tPostList = await getTranslations('PostListPage');
+  const allPosts = getAllPosts();
 
   return (
     <main className="flex h-full w-full flex-col gap-y-10 p-10">
@@ -18,17 +19,7 @@ export default function PostListPage() {
       </div>
 
       <section>
-        <ul className="flex flex-col gap-4">
-          {posts.map(post => (
-            <li key={post.slug} className="border-2 border-blue-500 p-4">
-              <Link href={`/posts/${post.slug}`} className="flex flex-col">
-                <span>{post.meta.title}</span>
-                <span>{post.meta.description}</span>
-                <span>{post.meta.date}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <PostList posts={allPosts} />
       </section>
     </main>
   );
