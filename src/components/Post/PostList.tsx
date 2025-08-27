@@ -1,61 +1,105 @@
 'use client';
 
-import { Link } from '@/i18n/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const PostList = ({ posts }: { posts: Post[] }) => {
-  const [selectedTag, setSelectedTag] = useState<string[]>([]);
-  const [filteredPosts, setFilteredPosts] = useState<Post[]>(posts);
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [sortBy, setSortBy] = useState<'date' | 'title'>('date');
 
-  useEffect(() => {
-    if (selectedTag.length > 0) {
-      setFilteredPosts(posts.filter(post => post.meta.tag?.some(tag => selectedTag.includes(tag))));
+  const clearFilters = () => {
+    setSelectedTag(null);
+  };
+
+  const tagList = Array.from(new Set(posts.flatMap(post => post.meta.tag || [])));
+
+  const filteredData = posts.filter(item => (selectedTag ? item.meta.tag === selectedTag : true));
+
+  const sortedData = [...filteredData].sort((a, b) => {
+    if (sortBy === 'date') {
+      return new Date(b.meta.date.replace(/\./g, '-')).getTime() - new Date(a.meta.date.replace(/\./g, '-')).getTime();
     } else {
-      setFilteredPosts(posts);
+      return a.meta.title.localeCompare(b.meta.title);
     }
-  }, [posts, selectedTag]);
+  });
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-wrap gap-2">
-        {Array.from(new Set(posts.flatMap(post => post.meta.tag || []))).map(tag => (
-          <button
-            key={tag}
-            onClick={() => {
-              if (selectedTag.includes(tag)) {
-                setSelectedTag(selectedTag.filter(t => t !== tag));
-              } else {
-                setSelectedTag([...selectedTag, tag]);
-              }
-            }}
-            className={`rounded-full px-4 py-1 text-sm ${
-              selectedTag.includes(tag) ? 'bg-main text-white' : 'bg-gray-200 text-gray-700'
-            }`}>
-            {tag}
-          </button>
-        ))}
-      </div>
+      <section className="mb-8">
+        <div className="flex flex-col items-start justify-between gap-4 border-b border-gray-200 pb-4 sm:flex-row sm:items-center">
+          <div className="flex flex-wrap items-center gap-6">
+            <div className="flex items-center gap-4">
+              <span className="text-sm font-medium text-gray-900">/ FILTER</span>
+              <button
+                onClick={clearFilters}
+                className="text-sm text-gray-600 underline transition-colors hover:text-gray-900">
+                CLEAR FILTER
+              </button>
+            </div>
 
-      <ul className="flex flex-col gap-4">
-        {filteredPosts.map(post => (
-          <li key={post.slug} className="border-main border-2 p-4">
-            <Link href={`/posts/${post.slug}`} className="flex flex-col gap-2">
-              <span className="text-xl font-bold">{post.meta.title}</span>
-              <span className="text-gray-600">{post.meta.description}</span>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-500">{post.meta.date}</span>
-                <div className="flex gap-2">
-                  {post.meta.tag?.map(tag => (
-                    <span key={tag} className="rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-600">
-                      {tag}
-                    </span>
-                  ))}
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setSortBy('date')}
+                className={`text-sm font-medium transition-colors ${
+                  sortBy === 'date' ? 'border-b border-gray-900 text-gray-900' : 'text-gray-600 hover:text-gray-900'
+                }`}>
+                / DATE
+              </button>
+              <button
+                onClick={() => setSortBy('title')}
+                className={`text-sm font-medium transition-colors ${
+                  sortBy === 'title' ? 'border-b border-gray-900 text-gray-900' : 'text-gray-600 hover:text-gray-900'
+                }`}>
+                / TITLE
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="pb-16">
+        <div className="flex flex-col gap-8 lg:flex-row">
+          {/* Filter Sidebar */}
+          <div className="flex-shrink-0 lg:w-64">
+            <div className="space-y-3">
+              {tagList.map(tag => (
+                <label key={tag} className="flex cursor-pointer items-center gap-3">
+                  <div className="relative">
+                    <input
+                      type="checkbox"
+                      checked={selectedTag === tag}
+                      onChange={() => setSelectedTag(selectedTag === tag ? null : tag)}
+                      className="sr-only"
+                    />
+                    <div
+                      className={`flex h-4 w-4 items-center justify-center border border-gray-400 ${
+                        selectedTag === tag ? 'bg-gray-900' : 'bg-white'
+                      }`}>
+                      {selectedTag === tag && <span className="text-xs text-white">✓</span>}
+                    </div>
+                  </div>
+                  <span className="text-sm font-medium text-gray-900">{tag.toUpperCase()}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Feed List */}
+          <div className="flex-1">
+            <div className="space-y-0">
+              {sortedData.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex cursor-pointer flex-col gap-4 border-b py-4 transition-colors hover:bg-gray-50 sm:flex-row sm:items-center">
+                  <div className="flex-shrink-0 font-mono text-sm text-gray-600 sm:w-24">{item.meta.date}</div>
+                  <div className="flex-1">
+                    <h3 className="text-colPick mb-2 text-xl font-semibold">{item.meta.title}</h3>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

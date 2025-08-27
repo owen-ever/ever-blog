@@ -3,7 +3,7 @@ interface PostMeta {
   title: string;
   description: string;
   date: string;
-  tag?: string[];
+  tag?: string;
 }
 
 interface Post {
