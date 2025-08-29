@@ -11,3 +11,10 @@ interface Post {
   meta: PostMeta;
   content: string;
 }
+
+type SortByType = 'date' | 'title';
+
+interface SortByListType {
+  DATE: 'date';
+  TITLE: 'title';
+}
