@@ -1,5 +1,6 @@
 'use client';
 
+import { Link } from '@/i18n/navigation';
 import { useState } from 'react';
 
 const FilterList: SortByListType = {
@@ -70,14 +71,14 @@ const PostList = ({ posts }: { posts: Post[] }) => {
             </div>
             <div className="space-y-0">
               {sortedData.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex cursor-pointer flex-col gap-4 border-b py-4 transition-colors hover:bg-gray-50 sm:flex-row sm:items-center">
-                  <div className="flex-shrink-0 font-mono text-sm text-gray-600 sm:w-24">{item.meta.date}</div>
-                  <div className="flex-1">
-                    <h3 className="text-colPick mb-2 text-xl font-semibold">{item.meta.title}</h3>
+                <Link key={index} href={`/posts/${item.slug}`}>
+                  <div className="flex cursor-pointer flex-col gap-4 border-b py-4 transition-colors hover:bg-gray-50 sm:flex-row sm:items-center">
+                    <div className="flex-shrink-0 font-mono text-sm text-gray-600 sm:w-24">{item.meta.date}</div>
+                    <div className="flex-1">
+                      <h3 className="text-colPick mb-2 text-xl font-semibold">{item.meta.title}</h3>
+                    </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
