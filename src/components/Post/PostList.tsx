@@ -33,12 +33,14 @@ const PostList = ({ posts }: { posts: Post[] }) => {
       <section className="mx-auto w-full">
         <div className="flex flex-col gap-8 lg:flex-row">
           <div className="flex flex-col gap-4 lg:w-1/4">
-            <div className="flex items-center gap-4 border-b pb-4">
-              <button
-                onClick={clearFilters}
-                className="hover:text-colPick cursor-pointer pb-0.5 text-sm font-semibold text-gray-500 transition-colors">
-                CLEAR FILTER
-              </button>
+            <div className="flex items-center gap-4 border-b">
+              <div className="sm:h-10">
+                <button
+                  onClick={clearFilters}
+                  className="hover:text-colPick cursor-pointer text-sm font-semibold text-gray-500 transition-colors">
+                  CLEAR FILTER
+                </button>
+              </div>
             </div>
             <div className="space-y-3">
               {tagList.map(tag => (
@@ -54,9 +56,9 @@ const PostList = ({ posts }: { posts: Post[] }) => {
           </div>
 
           <div className="flex flex-col lg:w-3/4">
-            <div className="flex items-center gap-4 border-b pb-4">
+            <div className="flex items-center gap-4 border-b">
               {Object.entries(FilterList).map(([key, value]) => (
-                <div key={key} className="sm:w-24">
+                <div key={key} className="sm:h-10 sm:w-24">
                   <button
                     onClick={() => setSortBy(value)}
                     className={`text-sm font-semibold transition-colors ${
