@@ -15,8 +15,10 @@ const resumeDatas = [
     projects: [
       {
         title: '디자인 시스템 구축 및 컴포넌트 라이브러리 개발',
+        summary:
+          '디자인 시스템 구축 및 컴포넌트 라이브러리 개발 디자인 시스템 \n구축 및 컴포넌트 라이브러리 개발 디자인 시스템 구축 및 컴포넌트 라이브러리 개발',
         descriptions: [
-          '디자인 시스템 구축 및 컴포넌트 라이브러리 개발 디자인 시스템 구축 및 컴포넌트 라이브러리 개발 디자인 시스템 구축 및 컴포넌트 라이브러리 개발',
+          '디자인 시스템 구축 및 컴포넌트 라이브러리 개발\n디자인 시스템 구축 및 컴포넌트 라이브러리 개발 디자인 시스템 구축 \n및 컴포넌트 라이브러리 개발',
           '웹 성능 최적화로 로딩 속도 40% 개선',
           '크로스 브라우저 호환성 및 반응형 웹 구현',
         ],
@@ -24,7 +26,8 @@ const resumeDatas = [
       },
       {
         title: '웹 성능 최적화',
-        descriptions: ['모바일 최적화로 전황율 25% 향상', '결제 시스템 UI 개선 및 사용성 향상'],
+        summary: '웹 성능 최적화 웹 성능 최적화',
+        descriptions: ['모바일 최적화로 전황율 25%\n향상', '결제 시스템 UI 개선 및 사용성 향상'],
         techStack: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS'],
       },
     ],
@@ -38,6 +41,7 @@ const resumeDatas = [
     projects: [
       {
         title: '디자인 시스템 구축 및 컴포넌트 라이브러리 개발',
+        summary: '디자인 시스템 구축 및 컴포넌트 라이브러리 개발 디자인 시스템 구축 및 컴포넌트 라이브러리 개발',
         descriptions: [
           '모바일 최적화로 전환율 25% 향상',
           '결제 시스템 UI 개선 및 사용성 향상',
@@ -47,6 +51,7 @@ const resumeDatas = [
       },
       {
         title: '웹 성능 최적화',
+        summary: '웹 성능 최적화 웹 성능 최적화',
         descriptions: ['모바일 최적화로 전황율 25% 향상', '결제 시스템 UI 개선 및 사용성 향상'],
         techStack: ['Vue.js', 'JavaScript', 'SCSS', 'Webpack'],
       },
@@ -61,11 +66,13 @@ const resumeDatas = [
     projects: [
       {
         title: '기술적 도전',
+        summary: '기술적 도전 기술적 도전',
         descriptions: ['실시간 채팅 기능 구현 (WebSocket)', 'JWT 기반 인증 시스템 구축', 'Docker를 활용한 배포 자동화'],
         techStack: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS'],
       },
       {
         title: '웹 성능 최적화',
+        summary: '웹 성능 최적화 웹 성능 최적화',
         descriptions: ['모바일 최적화로 전황율 25% 향상', '결제 시스템 UI 개선 및 사용성 향상'],
         techStack: ['Vue.js', 'JavaScript', 'SCSS', 'Webpack'],
       },
@@ -164,9 +171,10 @@ export default function ResumePage() {
                         <div className="flex flex-col space-y-2 border-t pt-2 lg:flex-row" key={idx}>
                           <h5 className="text-colPick text-sm font-semibold lg:w-1/3">{project.title}</h5>
                           <div className="flex flex-col gap-2 lg:w-2/3">
+                            <p className="text-colPick text-sm font-medium whitespace-pre-wrap">{project.summary}</p>
                             <ul className="text-colPick space-y-1 text-sm">
                               {project.descriptions.map((description, idx) => (
-                                <li className="flex items-start" key={idx}>
+                                <li className="flex items-start whitespace-pre-wrap" key={idx}>
                                   <span className="mt-2 mr-3 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gray-400"></span>
                                   {description}
                                 </li>
