@@ -6,75 +6,96 @@ const githubLink = 'https://github.com/owen-ever';
 
 const resumeDatas = [
   {
-    company: '테크 스타트업',
+    company: '팀벨',
     position: 'Frontend Engineer',
-    startDate: '2023.03',
+    startDate: '2024.01',
     endDate: 'Present',
-    description:
-      'React 기반의 대규모 웹 애플리케이션 개발을 담당하며, 사용자 경험 개선과 성능 최적화에 집중하고 있습니다.',
+    description: 'AI 음성기록 솔루션 리뉴얼 \nRAG 기반 대화엔진 솔루션 초기 개발',
     projects: [
       {
-        title: '디자인 시스템 구축 및 컴포넌트 라이브러리 개발',
+        title: '팀블로 v2 프론트엔드 리뉴얼',
         summary:
-          '디자인 시스템 구축 및 컴포넌트 라이브러리 개발 디자인 시스템 \n구축 및 컴포넌트 라이브러리 개발 디자인 시스템 구축 및 컴포넌트 라이브러리 개발',
+          '팀블로 v1은 기능이 빠르게 추가되면서 코드 복잡도가 높아, 신규 요구사항 대응 시 사이드이펙트가 빈번해지는 문제가 있었습니다. \n고객사별 선택적 기능 요구가 늘어나면서 백오피스 설정을 통해 메인 서비스 기능을 제어하는 구조가 필요해졌습니다. \n이 문제를 해결하기 위해서 FSD 아키텍처 기반으로 재설계하고, 공통 컴포넌트를 아토믹 디자인화하여 유지보수성과 UI 일관성을 강화했습니다.',
         descriptions: [
-          '디자인 시스템 구축 및 컴포넌트 라이브러리 개발\n디자인 시스템 구축 및 컴포넌트 라이브러리 개발 디자인 시스템 구축 \n및 컴포넌트 라이브러리 개발',
-          '웹 성능 최적화로 로딩 속도 40% 개선',
-          '크로스 브라우저 호환성 및 반응형 웹 구현',
+          '확장성과 유지보수성에 유리한 FSD 아키텍처 기반으로 재설계',
+          '공통 컴포넌트를 아토믹 디자인화하여 유지보수성과 UI 일관성 강화',
+          '신규 기능 반영 시 수정 파일 수 40% 감소, 반영 소요시간 20% 단축',
         ],
-        techStack: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS'],
+        techStack: ['React', 'Tailwind CSS', 'Material UI', 'SCSS'],
       },
       {
-        title: '웹 성능 최적화',
-        summary: '웹 성능 최적화 웹 성능 최적화',
-        descriptions: ['모바일 최적화로 전황율 25%\n향상', '결제 시스템 UI 개선 및 사용성 향상'],
-        techStack: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS'],
+        title: '랭사 초기 버전 프론트엔드 개발',
+        summary:
+          '여러 회사가 동시에 협업하는 촉박한 일정 속에서 컨벤션 부재와 코드 일관성 부족으로 협업 효율과 생산성 저하에 대한 문제를 사전에 예상하고 대응했습니다. \nNext.js 기반 보일러플레이트와 컨벤션을 설계, 문서화하여 생산성과 협업 효율을 확보했습니다.',
+        descriptions: [
+          'Nuxt.js 기반 보일러플레이트와 컨벤션 설계, 문서화',
+          '협업사 온보딩 기간을 1주 → 2일로 단축',
+          '프로젝트 마감일 3주 단축, PoC 성공적 완료',
+        ],
+        techStack: ['Vue', 'TypeScript', 'Nuxt.js', 'Tailwind CSS'],
       },
     ],
   },
   {
-    company: '이커머스 회사',
-    position: 'Frontend Engineer',
-    startDate: '2021.06',
-    endDate: '2023.02',
-    description: '온라인 쇼핑몰의 프론트엔드 개발을 담당하며, 사용자 친화적인 UI/UX 구현에 집중했습니다.',
+    company: '플렉시스',
+    position: 'Software Engineer',
+    startDate: '2022.01',
+    endDate: '2023.12',
+    description: 'B2G 대상 공공언어 개선 서비스 성능 최적화 \nB2B 대상 키워드 인덱싱 솔루션 리뉴얼',
     projects: [
       {
-        title: '디자인 시스템 구축 및 컴포넌트 라이브러리 개발',
-        summary: '디자인 시스템 구축 및 컴포넌트 라이브러리 개발 디자인 시스템 구축 및 컴포넌트 라이브러리 개발',
+        title: '다듬 백엔드 리뉴얼',
+        summary:
+          '레거시에 포함된 Selenium 의존으로 웹페이지 100개 처리에 1시간 이상 소요되며 영업 미팅 & 데모가 지연되는 문제가 있었습니다. \n이 문제를 해결하기 위해서 Selenium을 대체하는 메커니즘을 구상하고, 동시에 알고리즘 최적화를 진행했습니다. \nDocker 기반 API 서버 구성으로 처리 속도와 납품 효율을 개선했습니다.',
         descriptions: [
-          '모바일 최적화로 전환율 25% 향상',
-          '결제 시스템 UI 개선 및 사용성 향상',
-          'A/B 테스트를 통한 지속적인 UX 개선',
+          '알고리즘 최적화(비트마스킹, 아호코라식) 및 Selenium 제거로 처리 속도 개선',
+          'Docker 기반 미들웨어 구성으로 대응 방식 다각화',
+          '처리시간을 1시간 → 5분(12배 개선 - 영업 EX 향상)',
         ],
-        techStack: ['Vue.js', 'JavaScript', 'SCSS', 'Webpack'],
+        techStack: ['Python', 'FastAPI'],
       },
       {
-        title: '웹 성능 최적화',
-        summary: '웹 성능 최적화 웹 성능 최적화',
-        descriptions: ['모바일 최적화로 전황율 25% 향상', '결제 시스템 UI 개선 및 사용성 향상'],
-        techStack: ['Vue.js', 'JavaScript', 'SCSS', 'Webpack'],
+        title: '큐잉 v2 프론트엔드 리뉴얼',
+        summary:
+          'HTML, CSS, JS 기반 레거시 구조는 확장성과 유지보수가 어려워 신규 기능 대응에 한계가 있었습니다. \n리빌딩 과정에서 고객사 웹페이지의 스타일이 변경되는 문제가 발생했는데, 솔루션이 스크립트 형태로 삽입되는 과정에서 !important 스타일이 고객사 스타일을 덮어쓰는 것이 원인이었습니다. \n이 문제를 해결하기 위한 방법을 찾던 중 카카오 컨퍼런스를 통해 Shadow DOM 개념을 접하게 되었고, 이를 적용하여 고객사 웹페이지와 CSS 충돌 문제를 근본적으로 해소할 수 있었습니다. \nNext.js, Tailwind CSS로 전체 구조를 리빌딩하고, 추가로 코드 컨벤션 설계에 참여하여 신규 인력의 빠른 적응과 팀 내 개발 일관성을 확보했습니다.',
+        descriptions: [
+          'Next.js & Tailwind CSS로 레거시 구조 리빌딩',
+          'Shadow DOM을 도입해 고객사 웹페이지와 CSS 충돌 제거',
+          '코드 컨벤션을 설계 & 도입해 개발 일관성 향상, 신규 인력 온보딩 기간 2주 → 1주 단축',
+          '공공기관, 카페24 스토어 앱 런칭 성공',
+        ],
+        techStack: ['React', 'Typescript', 'Next.js', 'Tailwind CSS', 'SCSS'],
       },
     ],
   },
   {
-    company: '개인 프로젝트',
-    position: 'Full-stack Developer',
-    startDate: '2023.01',
-    endDate: 'Present',
-    description: '개발자 커뮤니티 플랫폼을 기획부터 배포까지 전체 과정을 담당한 풀스택 프로젝트입니다.',
+    company: '핀테크놀러지',
+    position: 'Software Engineer',
+    startDate: '2019.01',
+    endDate: '2021.04',
+    description: 'IBK 앱 내 챗봇 서비스 유지보수 \n챗봇 운영 관리도구 개발',
     projects: [
       {
-        title: '기술적 도전',
-        summary: '기술적 도전 기술적 도전',
-        descriptions: ['실시간 채팅 기능 구현 (WebSocket)', 'JWT 기반 인증 시스템 구축', 'Docker를 활용한 배포 자동화'],
-        techStack: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS'],
+        title: '챗봇 솔루션 유지보수',
+        summary:
+          '레거시 REST API와 일관성 없는 주석 관리로 유지보수 난이도가 높았습니다. \n유지보수 과정에서 관리되지 않은 주석을 기반으로 작업하는 것은 문제가 있다고 판단했고, 주석 전면 재작성으로 코드 가독성과 각 기능의 역할을 명확히 했습니다. \n이를 기반으로 결합도가 낮은 영역부터 단계적으로 리팩토링을 진행했습니다.',
+        descriptions: [
+          'REST API 리팩토링으로 구조적 일관성 확보',
+          '주석 전면 재작성으로 문서화 품질 강화',
+          '신규 인력 온보딩 기간을 1주 단축',
+        ],
+        techStack: ['Java', 'JSDoc', 'Spring'],
       },
       {
-        title: '웹 성능 최적화',
-        summary: '웹 성능 최적화 웹 성능 최적화',
-        descriptions: ['모바일 최적화로 전황율 25% 향상', '결제 시스템 UI 개선 및 사용성 향상'],
-        techStack: ['Vue.js', 'JavaScript', 'SCSS', 'Webpack'],
+        title: '챗봇 백오피스 프론트엔드 개발',
+        summary:
+          '상담 데이터, 정규표현식 관리 도구가 미흡하여 운영 효율과 유지보수성이 떨어지는 문제가 있었습니다. \nReact 기반 백오피스를 기획 단계부터 참여하여 개발하고, Rasa 오픈소스를 한글화(Mecab 사전 적용)하여 운영 효율과 유지보수성을 개선했습니다.',
+        descriptions: [
+          'React 기반 백오피스를 기획 단계부터 참여하여 개발',
+          'Rasa 오픈소스를 형태소 분석기 커스텀(Mecab)을 통해 한글화',
+          '상담 데이터 관리 효율화',
+        ],
+        techStack: ['React', 'Rasa'],
       },
     ],
   },
@@ -102,7 +123,7 @@ export default function ResumePage() {
               <h2 className="border-b pb-1 text-xs font-semibold tracking-wider text-gray-500 uppercase">Identity</h2>
               <div>
                 <p className="text-colPick text-lg font-medium">Owen</p>
-                <p className="text-sm text-gray-600">Frontend Engineer</p>
+                <p className="text-sm text-gray-600">Experience Architect (희망)</p>
                 <p className="mt-1 text-xs text-gray-500">Seoul, Korea</p>
               </div>
             </div>
@@ -164,7 +185,7 @@ export default function ResumePage() {
 
                 <div className="lg:w-3/4">
                   <div className="space-y-4">
-                    <p className="text-colPick leading-relaxed">{data.description}</p>
+                    <p className="text-colPick leading-relaxed sm:whitespace-pre-wrap">{data.description}</p>
 
                     <div className="space-y-3">
                       {data.projects.map((project, idx) => (
