@@ -16,4 +16,6 @@ bun run build
 
 docker-compose build --no-cache
 
-docker push $REGISTRY/ever-blog:0.0.1
+if [ ! -z "$1" ]; then
+    docker push $REGISTRY/ever-blog:0.1.0
+fi

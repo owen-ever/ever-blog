@@ -1,3 +1,4 @@
+import 'server-only';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -5,17 +6,21 @@ import matter from 'gray-matter';
 const postsDir = path.join(process.cwd(), 'posts');
 
 export function getPostSlugs(): Post['slug'][] {
-  return fs.readdirSync(postsDir).filter(file => file.endsWith('.md'));
+  return fs
+    .readdirSync(postsDir)
+    .filter(file => file.endsWith('.md'))
+    .map(file => file.replace(/\.md$/, ''));
 }
 
 export function getPostBySlug(slug: Post['slug']): Post {
-  const realSlug = slug.replace(/\.md$/, '');
-  const filePath = path.join(postsDir, `${realSlug}.md`);
+  const filePath = path.join(postsDir, `${slug}.md`);
+  // console.log('>>>> 1', filePath);
   const fileContents = fs.readFileSync(filePath, 'utf8');
+  // console.log('>>>> 2', fileContents);
   const { data, content } = matter(fileContents);
 
   return {
-    slug: realSlug,
+    slug,
     meta: data as PostMeta,
     content,
   };

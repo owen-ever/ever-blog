@@ -1,19 +1,17 @@
 import AppMarkdown from '@/components/markdown/AppMarkdown';
-import { Link } from '@/i18n/navigation';
 import { getPostBySlug, getPostSlugs } from '@/lib/posts';
-import { getTranslations } from 'next-intl/server';
+import Link from 'next/link';
 
 type Props = {
   params: Promise<{ slug: Post['slug'] }>;
 };
 
 export async function generateStaticParams() {
-  const slugs = getPostSlugs().map(slug => ({ slug }));
-  return slugs;
+  const slugs = getPostSlugs();
+  return slugs.map(slug => ({ slug }));
 }
 
 export default async function PostPage({ params }: Props) {
-  const tPostList = await getTranslations('PostListPage');
   const { slug } = await params;
   const post = getPostBySlug(slug);
 
@@ -31,7 +29,7 @@ export default async function PostPage({ params }: Props) {
 
             <div className="flex items-center">
               <Link className="text-colPick text-xl font-medium underline" href="/posts">
-                {tPostList('title')}
+                Feed
               </Link>
             </div>
           </div>

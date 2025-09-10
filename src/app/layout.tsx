@@ -1,6 +1,7 @@
 // 루트 레이아웃
 import type { Metadata } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import JotaiProvider from './providers';
 
@@ -27,6 +28,9 @@ export default async function RootLayout({
     <html>
       <body className={`${notoSansKR.variable} antialiased`}>
         <JotaiProvider>{children}</JotaiProvider>
+
+        {/* Cloudflare Analytics 스크립트 - CORS 문제 해결을 위해 Next.js Script 사용 */}
+        <Script src="https://static.cloudflareinsights.com/beacon.min.js" strategy="afterInteractive" />
       </body>
     </html>
   );
