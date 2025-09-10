@@ -1,8 +1,8 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'http://localhost:3000',
+  siteUrl: 'https://blog.owen.kr',
   generateRobotsTxt: true,
-  canonicalBase: 'http://localhost:3000',
+  canonicalBase: 'https://blog.owen.kr',
   robotsTxtOptions: {
     policies: [
       {

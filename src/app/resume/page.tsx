@@ -1,6 +1,6 @@
-import { Link } from '@/i18n/navigation';
+import { persona } from '@/lib/comment';
 import { formatLine } from '@/lib/formatter';
-import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 
 const githubLink = 'https://github.com/owen-ever';
 
@@ -102,16 +102,13 @@ const resumeDatas = [
 ];
 
 export default function ResumePage() {
-  const tHome = useTranslations('HomePage');
-  const tResume = useTranslations('ResumePage');
-
   return (
     <main className="flex h-full w-full flex-col gap-y-10 p-10">
       <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div className="text-main text-7xl font-bold lg:text-8xl">{tResume('title')}</div>
+        <div className="text-main text-7xl font-bold lg:text-8xl">Resume</div>
         <div className="flex h-full items-end">
           <Link className="text-colPick text-2xl font-medium underline" href="/">
-            {tResume('home')}
+            Home
           </Link>
         </div>
       </div>
@@ -137,7 +134,7 @@ export default function ResumePage() {
 
             <div className="space-y-3">
               <h2 className="border-b pb-1 text-xs font-semibold tracking-wider text-gray-500 uppercase">About</h2>
-              {formatLine(tHome('description')).map((line, index) => (
+              {formatLine(persona).map((line, index) => (
                 <p className="text-sm leading-relaxed text-gray-700" key={index}>
                   {line}
                 </p>
