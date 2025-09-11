@@ -11,7 +11,6 @@ ENV PORT=3000
 COPY ./package.json ./
 COPY ./bun.lock ./
 COPY ./next.config.ts ./
-COPY ./messages ./messages
 COPY ./public ./public
 COPY ./.next/standalone ./
 COPY ./.next/static ./.next/static
