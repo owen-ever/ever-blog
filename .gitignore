@@ -12,6 +12,9 @@
 /.next/
 /out/
 
+# sitemap
+/public/sitemap*.xml
+
 # production
 /build
 docker-compose.yaml
