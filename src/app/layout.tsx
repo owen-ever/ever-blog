@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-page-custom-font */
 // 루트 레이아웃
 import type { Metadata } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
@@ -9,6 +10,7 @@ const notoSansKR = Noto_Sans_KR({
   variable: '--font-noto-sans-kr',
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
   subsets: ['latin'],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -26,6 +28,13 @@ export default async function RootLayout({
 }>) {
   return (
     <html>
+      <head>
+        <link
+          rel="preload"
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          as="style"
+        />
+      </head>
       <body className={`${notoSansKR.variable} antialiased`}>
         <JotaiProvider>{children}</JotaiProvider>
 
