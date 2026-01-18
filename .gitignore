@@ -11,7 +11,7 @@
 # next.js
 /.next/
 /out/
-/posts/images/
+/api/images/
 
 # ai agent
 /.agent/
