@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
-import JotaiProvider from './providers';
+import Provider from './providers';
 
 const notoSansKR = Noto_Sans_KR({
   variable: '--font-noto-sans-kr',
@@ -36,7 +36,7 @@ export default async function RootLayout({
         />
       </head>
       <body className={`${notoSansKR.variable} antialiased`}>
-        <JotaiProvider>{children}</JotaiProvider>
+        <Provider>{children}</Provider>
 
         {/* Cloudflare Analytics 스크립트 - CORS 문제 해결을 위해 Next.js Script 사용 */}
         <Script src="https://static.cloudflareinsights.com/beacon.min.js" strategy="afterInteractive" />
