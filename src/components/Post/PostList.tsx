@@ -18,7 +18,13 @@ const PostList = ({ posts }: { posts: Post[] }) => {
 
   const tagList = Array.from(new Set(posts.flatMap(post => post.meta.tag || [])));
 
-  const filteredData = posts.filter(item => (selectedTag ? item.meta.tag === selectedTag : true));
+  const filteredData = posts.filter(item =>
+    selectedTag
+      ? Array.isArray(item.meta.tag)
+        ? item.meta.tag.includes(selectedTag)
+        : item.meta.tag === selectedTag
+      : true,
+  );
 
   const sortedData = [...filteredData].sort((a, b) => {
     if (sortBy === FilterList.DATE) {

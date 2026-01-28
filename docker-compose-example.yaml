@@ -1,8 +1,6 @@
-version: '3.8'
-
 services:
   ever-blog:
-    image: ever-blog:0.0.1
+    image: ever-blog:${VERSION}
     build:
       context: .
       dockerfile: dockerfile
@@ -13,4 +11,8 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=3000
+      - POSTS_DIR=/posts
     restart: unless-stopped
+    volumes:
+      - ./posts:/posts
+      - ./images:/posts/images

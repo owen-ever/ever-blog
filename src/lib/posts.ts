@@ -3,7 +3,9 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-const postsDir = path.join(process.cwd(), 'posts');
+// Docker 런타임에서는 /posts 볼륨 마운트 경로, 빌드/로컬에서는 프로젝트 내 api/posts 디렉토리
+// POSTS_DIR 환경변수로 오버라이드 가능
+const postsDir = process.env.POSTS_DIR || path.join(process.cwd(), 'api/posts');
 
 export function getPostSlugs(): Post['slug'][] {
   return fs
