@@ -8,6 +8,12 @@ fi
 
 REGISTRY=$1
 
+# package.json에서 버전 읽기
+VERSION=$(node -p "require('./package.json').version")
+export VERSION
+
+echo "Building version: $VERSION"
+
 nvm use
 
 bun i
@@ -17,5 +23,5 @@ bun run build
 docker-compose build --no-cache
 
 if [ ! -z "$1" ]; then
-    docker push $REGISTRY/ever-blog:0.1.4
+    docker push $REGISTRY/ever-blog:$VERSION
 fi

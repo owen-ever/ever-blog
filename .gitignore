@@ -12,9 +12,11 @@
 /.next/
 /out/
 /api/images/
+/api/posts/
 
 # ai agent
 /.agent/
+/.claude/
 
 # sitemap
 /public/sitemap*.xml

@@ -24,7 +24,15 @@ export default async function PostPage({ params }: Props) {
           <div className="flex justify-between">
             <div className="flex items-center gap-2">
               <span className="text-md rounded-full bg-white px-2 py-1 text-gray-600">{post.meta.date}</span>
-              <span className="text-md text-main rounded-full bg-white px-2 py-1 font-bold">{post.meta.tag}</span>
+              {Array.isArray(post.meta.tag) ? (
+                post.meta.tag.map((t, i) => (
+                  <span key={i} className="text-md text-main rounded-full bg-white px-2 py-1 font-bold">
+                    {t}
+                  </span>
+                ))
+              ) : (
+                <span className="text-md text-main rounded-full bg-white px-2 py-1 font-bold">{post.meta.tag}</span>
+              )}
             </div>
 
             <div className="flex items-center">
