@@ -15,7 +15,12 @@ const AppMarkdown = ({ text, isViewMode = true }: AppMarkdownProps) => {
   return (
     <Box className="md-text">
       {isViewMode ? (
-        <ReactMarkdown rehypePlugins={[rehypeRaw, rehypeHighlight]} remarkPlugins={[remarkGfm]}>
+        <ReactMarkdown
+          rehypePlugins={[rehypeRaw, rehypeHighlight]}
+          remarkPlugins={[remarkGfm]}
+          components={{
+            ol: ({ start, ...props }) => <ol {...props} start={1} />,
+          }}>
           {text}
         </ReactMarkdown>
       ) : (
