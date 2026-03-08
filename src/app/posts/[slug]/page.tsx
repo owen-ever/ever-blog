@@ -1,15 +1,12 @@
 import AppMarkdown from '@/components/markdown/AppMarkdown';
-import { getPostBySlug, getPostSlugs } from '@/lib/posts';
+import { getPostBySlug } from '@/lib/posts';
 import Link from 'next/link';
 
 type Props = {
   params: Promise<{ slug: Post['slug'] }>;
 };
 
-export async function generateStaticParams() {
-  const slugs = getPostSlugs();
-  return slugs.map(slug => ({ slug }));
-}
+export const dynamic = 'force-dynamic';
 
 export default async function PostPage({ params }: Props) {
   const { slug } = await params;
