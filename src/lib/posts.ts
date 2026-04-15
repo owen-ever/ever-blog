@@ -7,23 +7,45 @@ import matter from 'gray-matter';
 // POSTS_DIR 환경변수로 오버라이드 가능
 const postsDir = process.env.POSTS_DIR || path.join(process.cwd(), 'api/posts');
 
+function normalizePostDate(date: unknown): string {
+  if (date instanceof Date) {
+    return date.toISOString().slice(0, 10);
+  }
+
+  return typeof date === 'string' ? date : String(date ?? '');
+}
+
+function normalizePostMeta(data: Record<string, unknown>): PostMeta {
+  return {
+    ...data,
+    date: normalizePostDate(data.date),
+  } as PostMeta;
+}
+
 export function getPostSlugs(): Post['slug'][] {
+  if (!fs.existsSync(postsDir)) {
+    return [];
+  }
+
   return fs
     .readdirSync(postsDir)
     .filter(file => file.endsWith('.md'))
     .map(file => file.replace(/\.md$/, ''));
 }
 
-export function getPostBySlug(slug: Post['slug']): Post {
+export function getPostBySlug(slug: Post['slug']): Post | null {
   const filePath = path.join(postsDir, `${slug}.md`);
-  // console.log('>>>> 1', filePath);
+
+  if (!fs.existsSync(filePath)) {
+    return null;
+  }
+
   const fileContents = fs.readFileSync(filePath, 'utf8');
-  // console.log('>>>> 2', fileContents);
   const { data, content } = matter(fileContents);
 
   return {
     slug,
-    meta: data as PostMeta,
+    meta: normalizePostMeta(data),
     content,
   };
 }
@@ -31,6 +53,7 @@ export function getPostBySlug(slug: Post['slug']): Post {
 export function getAllPosts(): Post[] {
   return getPostSlugs()
     .map(slug => getPostBySlug(slug))
+    .filter((post): post is Post => post !== null)
     .sort((a, b) => {
       if (a.meta.date === b.meta.date) {
         return a.meta.index < b.meta.index ? 1 : -1;

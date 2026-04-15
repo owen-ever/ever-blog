@@ -1,9 +1,9 @@
 interface PostMeta {
   index: number;
   title: string;
-  description: string;
+  description?: string;
   date: string;
-  tag?: string;
+  tag?: string | string[];
 }
 
 interface Post {

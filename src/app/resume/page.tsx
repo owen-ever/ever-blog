@@ -1,6 +1,13 @@
 import { persona } from '@/lib/comment';
 import { formatLine } from '@/lib/formatter';
+import { createPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
+
+export const metadata = createPageMetadata({
+  title: 'Resume',
+  description: 'Owen의 경력, 프로젝트, 기술 스택을 정리한 Ever.Log 이력서 페이지',
+  path: '/resume',
+});
 
 const githubLink = 'https://github.com/owen-ever';
 

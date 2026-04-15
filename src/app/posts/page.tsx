@@ -1,6 +1,15 @@
 import PostList from '@/components/Post/PostList';
 import { getAllPosts } from '@/lib/posts';
+import { createPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
+
+const POSTS_DESCRIPTION = 'Ever.Log의 전체 게시글 피드입니다. 태그와 정렬로 개발 기록을 탐색할 수 있습니다.';
+
+export const metadata = createPageMetadata({
+  title: 'Feed',
+  description: POSTS_DESCRIPTION,
+  path: '/posts',
+});
 
 export const dynamic = 'force-dynamic';
 
