@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-page-custom-font */
 // 루트 레이아웃
+import { DEFAULT_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/seo';
 import type { Metadata } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
 import Script from 'next/script';
@@ -14,8 +15,30 @@ const notoSansKR = Noto_Sans_KR({
 });
 
 export const metadata: Metadata = {
-  title: 'Ever.Log',
-  description: 'Ever.Log',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: DEFAULT_DESCRIPTION,
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'ko_KR',
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: SITE_NAME,
+    description: DEFAULT_DESCRIPTION,
+    images: [{ url: '/favicon.ico' }],
+  },
+  twitter: {
+    card: 'summary',
+    title: SITE_NAME,
+    description: DEFAULT_DESCRIPTION,
+    images: ['/favicon.ico'],
+  },
   icons: {
     icon: '/favicon.ico',
   },
@@ -27,7 +50,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html>
+    <html lang="ko">
       <head>
         <link
           rel="preload"
