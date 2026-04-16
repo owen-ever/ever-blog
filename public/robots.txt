@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://blog.owen.kr
-
-# Sitemaps
-Sitemap: https://blog.owen.kr/sitemap.xml

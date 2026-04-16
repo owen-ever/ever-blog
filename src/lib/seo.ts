@@ -11,12 +11,16 @@ type CreatePageMetadataInput = {
   type?: 'website' | 'article';
 };
 
-function normalizePath(path: string): string {
+export function normalizePath(path: string): string {
   if (path === '/') {
     return '/';
   }
 
   return path.startsWith('/') ? path : `/${path}`;
+}
+
+export function toAbsoluteUrl(path: string): string {
+  return new URL(normalizePath(path), SITE_URL).toString();
 }
 
 export function createPageMetadata({ title, description, path, type = 'website' }: CreatePageMetadataInput): Metadata {

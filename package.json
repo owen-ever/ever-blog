@@ -10,15 +10,13 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "format-lint": "bun run format && bun run lint",
-    "prepare": "husky",
-    "postbuild": "next-sitemap"
+    "prepare": "husky"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.16",
     "daisyui": "^5.0.43",
     "gray-matter": "^4.0.3",
     "next": "15.5.7",
-    "next-sitemap": "^4.2.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-markdown": "^10.1.0",
