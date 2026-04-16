@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <main className="flex h-full w-full flex-col gap-y-10 p-10">
-      <div className="text-main text-7xl font-bold lg:text-8xl">Ever.Log</div>
+      <h1 className="text-main text-7xl font-bold lg:text-8xl">Ever.Log</h1>
       <div className="flex flex-col gap-y-10 lg:flex-row">
         <section className="flex h-full w-full flex-col gap-10 lg:w-1/2">
           <div className="flex flex-col gap-y-4">

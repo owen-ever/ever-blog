@@ -19,7 +19,7 @@ export default async function PostListPage() {
   return (
     <main className="flex h-full w-full flex-col gap-y-10 p-10">
       <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div className="text-main text-7xl font-bold lg:text-8xl">Feed</div>
+        <h1 className="text-main text-7xl font-bold lg:text-8xl">Feed</h1>
         <div className="flex h-full items-end">
           <Link className="text-colPick text-2xl font-medium underline" href="/">
             Home

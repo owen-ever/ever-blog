@@ -80,12 +80,12 @@ const PostList = ({ posts }: { posts: Post[] }) => {
             <div className="space-y-0">
               {sortedData.map((item, index) => (
                 <Link key={index} href={`/posts/${item.slug}`}>
-                  <div className="flex cursor-pointer flex-col gap-4 border-b py-4 transition-colors hover:bg-gray-50 sm:flex-row sm:items-center">
+                  <article className="flex cursor-pointer flex-col gap-4 border-b py-4 transition-colors hover:bg-gray-50 sm:flex-row sm:items-center">
                     <div className="flex-shrink-0 font-mono text-sm text-gray-600 sm:w-24">{item.meta.date}</div>
                     <div className="flex-1">
-                      <h3 className="text-colPick mb-2 text-xl font-semibold">{item.meta.title}</h3>
+                      <h2 className="text-colPick mb-2 text-xl font-semibold">{item.meta.title}</h2>
                     </div>
-                  </div>
+                  </article>
                 </Link>
               ))}
             </div>

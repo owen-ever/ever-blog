@@ -30,8 +30,8 @@ bun run lint-format
 
 - [NextJS](https://nextjs.org/docs)
 - [Typescript](https://www.typescriptlang.org/docs/)
-- [TanStack](https://tanstack.com/query/latest/docs/framework/react/overview)(전 React-Query)
-- [Jotai](https://jotai.org/docs)
+- [Tailwind CSS](https://tailwindcss.com/docs)
+- [React Markdown](https://github.com/remarkjs/react-markdown)
 
 ## 개발 도구
 
@@ -87,8 +87,4 @@ docker-compose up -d
 
 ## 참고
 
-> TanStack + Jotai  
-> 컴포넌트 단위로 Data fetching을 구성하여  
-> Data fetching 중심 구조 + 경량 상태 관리를 위해 채택  
-
-> [여기에](https://www.heropy.dev/p/HZaKIE) TanStack 예시가 잘 정리되어 있음
+> 콘텐츠 페이지와 마크다운 렌더링을 중심으로 단순한 App Router 구조를 유지합니다.
