@@ -66,6 +66,18 @@ export function getPostSlugs(): Post['slug'][] {
   return getPostFileNames().map(file => file.replace(/\.md$/, ''));
 }
 
+export function getPostSitemapEntries(): Array<{ slug: Post['slug']; lastModified: string }> {
+  return getPostFileNames().map(file => {
+    const slug = file.replace(/\.md$/, '');
+    const filePath = path.join(getPostsDir(), file);
+
+    return {
+      slug,
+      lastModified: fs.statSync(filePath).mtime.toISOString(),
+    };
+  });
+}
+
 export function getPostBySlug(slug: Post['slug']): Post | null {
   const filePath = getPostFilePath(slug);
 
