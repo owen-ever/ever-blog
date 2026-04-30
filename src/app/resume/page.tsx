@@ -10,39 +10,66 @@ export const metadata = createPageMetadata({
 });
 
 const githubLink = 'https://github.com/owen-ever';
+const blogLink = 'https://blog.owen.kr';
+const linkedInLink = 'https://www.linkedin.com/in/chanhojeon95';
 
 const resumeDatas = [
   {
     company: '팀벨',
     position: 'Frontend Engineer',
     startDate: '2024.01',
-    endDate: 'Present',
+    endDate: '2026.04',
     description:
-      'AI 음성기록 솔루션 리뉴얼, RAG 기반 대화엔진 초기 개발 \n복잡한 요구와 빠른 기능 추가 속도 속에서 구조적 설계 없이는 유지보수가 불가능하다는 것을 체감했습니다. \n역할을 분리하고 응집도를 높이면 사이드이펙트를 줄일 수 있다는 점을 직접 경험하며 변경 용이성을 우선한 구조 설계의 중요성을 내재화하게 되었습니다. \n협업과 변화에 강한 시스템은 추상화와 컨벤션 설계에서 비롯된다는 깨달음을 얻었습니다.',
+      'AI 기반 마케팅·CRM 통합 추적 제품을 1인 설계·개발하고, 팀블로 v2 구조 전환과 협업 표준화까지 함께 맡았습니다. \n이 시기에는 빠른 구현보다 다음 변경을 얼마나 안전하게 받아들이는 구조인지가 더 중요하다는 걸 반복해서 배웠습니다. \n실시간/배치, MVP/확장성, 속도/안정성 사이의 trade-off를 팀의 공통 언어로 정리하는 것이 제 일의 중심이 되었습니다.',
     projects: [
       {
-        title: '팀블로 v2 프론트엔드 구조 개선 및 유지보수 효율화',
+        title: 'AI 마케팅·CRM 통합 추적 솔루션, 내부 베타까지',
         summary:
-          'AI 음성기록 솔루션 리뉴얼 \n\n기존 v1 구조는 기능 추가가 빠르게 이루어진 반면 구현 범위가 얽혀 있어 신규 요구사항 대응 시 사이드이펙트가 반복되는 문제가 있었습니다. \n고객사마다 선택적 기능을 설정해 메인 서비스 흐름을 제어해야 할 니즈가 커졌습니다. \n문제의 해결을 위해서 FSD 아키텍처 기반의 구조 리디자인을 주도하여 역할별 디렉토리 구조와 공통 컴포넌트 추상화를 도입했습니다. \n추상화는 가독성과 응집도 간 균형을 유지하도록 설계했으며 디자인 시스템은 Atomic Design 기반으로 정비하여 UI 일관성과 유지보수 효율을 높였습니다.',
+          '마케팅 유입부터 고객 전환까지 단일 뷰로 추적하고 AI 분석까지 연결하는 내부 제품을 처음부터 끝까지 만들었습니다. \n\nGoogle·Meta·Naver API 제약과 실제 사용자 가치 사이에서 균형을 맞춰야 했고 요구사항은 주 단위로 바뀌었습니다. \n완성형을 한 번에 만들기보다 확장 가능한 뼈대를 먼저 세우는 쪽이 결국 더 빠르다는 판단으로 방향을 잡았습니다.',
         descriptions: [
-          '확장성과 변경 용이성을 고려한 FSD 아키텍처 적용',
-          '공통 컴포넌트 아토믹 디자인화로 UI 일관성 및 재사용성 향상',
-          '신규 기능 반영 시 수정 파일 수 40% 감소, 소요 시간 20% 단축 \n→ 변경 전후 각각 5일 간 PR 로그와 코드 변경량(파일 수, 라인 수)을 실제로 비교하여 산출.',
-          '코드 충돌 및 구조 변경 시 영향 범위 최소화 → 결합도 낮춤',
+          '실시간/배치 하이브리드 아키텍처를 설계해 데이터 신선도와 운영 비용의 균형을 맞춤',
+          '요구사항 변동이 큰 환경에 맞춰 변경 격리 중심의 MSA 구조를 도입하고 기능 책임 경계를 정리',
+          'Claude·Codex·Gemini를 역할별로 병렬 활용하는 구현/조사/검증 workflow를 정착',
+          '마케팅 담당자 대상 내부 베타 릴리즈 후 운영팀으로 안정적으로 인수인계',
         ],
-        techStack: ['React', 'Tailwind CSS', 'FSD', 'Atomic Design'],
+        techStack: ['TypeScript', 'Next.js', 'Node.js', 'MSA', 'AI Workflow'],
       },
       {
-        title: '다중 협업 환경에서의 컨벤션 및 개발 생산성 정비',
+        title: '팀블로 v2, FSD 기반 프론트엔드 재설계',
         summary:
-          'RAG 기반 대화엔진 초기 개발 \n\n여러 회사가 동시에 협업하는 프로젝트에서 코드 스타일 불일치와 명확한 컨벤션 부재로 협업 효율이 저하될 위험이 있었습니다. \n초기 개발 단계에서 이를 예측하고 대응하기 위해 Nuxt.js 기반 보일러플레이트와 컨벤션을 직접 설계 및 문서화했습니다.',
+          '기능이 늘수록 수정 범위 예측이 어려웠고 레이어 경계가 흐려질수록 사이드이펙트가 반복됐습니다. \n\n페이지 단위 점진적 마이그레이션으로 운영을 멈추지 않으면서 구조를 바꾸는 데 집중했습니다.',
         descriptions: [
-          '협업사 온보딩 시간 1주 → 2일 단축 \n→ 실제 협업사 신규 인력 투입 사례 기준, 세팅/첫 커밋/첫 PR까지의 평균 시간으로 산출',
-          '다중 모듈 구조에서 반환 타입과 네이밍 일관성 확보',
-          '프로젝트 마감일 3주 단축, PoC 성공적 완료',
-          '코드베이스 내 예측 가능성 향상, 리뷰 커뮤니케이션 비용 감소 \n→ 프로젝트 진행 시점별 PR 완료 시간을 비교하여 산출',
+          'FSD + Atomic Design 기반으로 레이어 경계를 재정의하고 공통 컴포넌트 체계를 정비',
+          '신규 기능 반영 시 수정 파일 수 40% 감소, 개발 소요 시간 20% 단축',
+          '대량 STT 대화 목록에 가상화와 레이지 로딩을 적용해 체감 성능 개선',
+          '가상화 이후 깨진 DOM 검색/치환을 원본 데이터·인덱스 기반 검색 구조로 재설계',
+          'API 스키마 불일치 사례를 정리해 FE-BE 아키텍처 리뷰 미팅을 정례화',
         ],
-        techStack: ['Vue', 'TypeScript', 'Nuxt.js', '컨벤션 설계', '협업환경'],
+        techStack: ['React', 'TypeScript', 'FSD', 'Atomic Design', 'Virtualization'],
+      },
+      {
+        title: '멀티컴퍼니 RAG PoC, 개발 표준 먼저 세우기',
+        summary:
+          '5개 서비스가 결합되는 협업 프로젝트에서 기능 구현보다 먼저 공통 기반이 필요했습니다. \n\n초기에 규칙을 정리하면 속도가 늦어질 것 같았지만, 결과적으로 가장 빠른 길이 되었습니다.',
+        descriptions: [
+          'Nuxt.js 보일러플레이트와 컨벤션 문서를 작성해 조직 표준으로 채택',
+          'Husky 기반 커밋 컨벤션을 적용해 협업 히스토리 관리 일관성 확보',
+          '협업사 온보딩 시간을 1주에서 2일로 단축',
+          '캐시 전략과 사용자 행동 트래킹 구조를 설계·제안',
+          '프로젝트 마감일 3주 단축, 경쟁 PT에서 PoC 최종 선정',
+        ],
+        techStack: ['Vue 3', 'Nuxt.js', 'TypeScript', 'Husky', 'RAG'],
+      },
+      {
+        title: 'OpenClaw OAuth recovery 오픈소스 기여',
+        summary:
+          '업무 바깥에서도 멀티 에이전트 환경의 신뢰성을 높이는 문제를 계속 파고들었습니다. \n\n재현이 어려운 인증 이슈를 줄여 릴리즈 가능한 해결 단위로 정리하는 데 집중했습니다.',
+        descriptions: [
+          '공유 OAuth 프로필이 동시에 refresh되며 재로그인을 유발하는 race condition을 재현하고 원인을 축소',
+          '`refresh_token_reused` 상황에서 auth store 재로드 + 1회 retry recovery path를 제안 (PR #54856)',
+          '핵심 recovery 방향이 좁혀진 형태로 v2026.4.7 릴리스에 반영',
+        ],
+        techStack: ['OpenClaw', 'OAuth', 'Race Condition', 'Reliability', 'OSS'],
       },
     ],
   },
@@ -52,30 +79,52 @@ const resumeDatas = [
     startDate: '2022.01',
     endDate: '2023.12',
     description:
-      '공공언어 개선 백엔드 성능 최적화, 키워드 인덱싱 솔루션 프론트엔드 리뉴얼 \n기술적 병목을 단순히 속도 문제같은 단편적인 시선으로 보지 않고, 구조와 의존성 관점에서 분석하는 습관이 생겼습니다. \n외부 도구를 걷어내고 순수 구조로 리팩토링하는 과정에서 “단순함은 성능이다”라는 관점이 생겼습니다. \n고객사 스타일 충돌 해결을 통해 사용자 환경을 고려한 캡슐화 설계의 중요성을 배웠습니다. \n기능 구현보다 장기적인 구조 리스크를 줄이는 설계가 더 큰 임팩트를 만든다는 걸 체감했습니다.',
+      '임베디드 위젯의 CSS 충돌과 백엔드 처리 병목처럼, 사용자 불편으로 드러나는 문제의 뿌리는 대부분 구조에 있었습니다. \n이때부터 증상만 고치기보다 시스템 경계를 다시 그려서 문제를 줄이는 접근을 습관으로 만들었습니다. \n호스트 환경을 존중하는 캡슐화와 병목을 제거하는 단순화가 장기적으로 가장 큰 효율을 만든다는 걸 배웠습니다.',
     projects: [
       {
-        title: '성능 병목 제거를 통한 처리 속도 12배 개선 및 납품 효율 향상',
+        title: '큐잉 v2, Shadow DOM 기반 위젯 시스템 재설계',
         summary:
-          '공공언어 개선 백엔드 성능 최적화 \n\n기존 백엔드는 Selenium에 의존해 HTML을 파싱하는 구조였으며 웹 페이지 100개 처리에 1시간 이상 소요되어 영업 데모 지연 및 가용성 리스크가 존재했습니다. \n이 구조는 외부 의존성과 프로세스 비효율성이 혼재된 상태로 낮은 응집도와 높은 결합도를 가지며 유지보수도 어려운 상황이었습니다. \n이에 따라 Selenium을 제거하고 비트마스킹, 아호-코라식 알고리즘을 활용한 정규화된 파싱 로직으로 리팩토링을 진행했습니다.',
+          '고객사 웹사이트에 임베딩되는 위젯에서 CSS 충돌 민원이 반복됐습니다. \n\niframe은 이벤트 흐름 단절 이슈가 있었고 CSS Modules는 완전한 격리가 어려웠습니다. \n호스트 이벤트 흐름은 유지하면서 스타일만 분리하기 위해 Shadow DOM을 선택했습니다.',
         descriptions: [
-          '외부 의존 제거 + 순수 알고리즘화 → 처리 속도 12배 향상 (60분 → 5분) \n→ 동일한 웹 페이지 100개 처리 기준으로, 기능 리팩토링 전후 실제 실행 시간 측정',
-          '데이터 처리 단계별 책임 분리 → 결합도 최소화',
-          '실제 영업 데모 지연과 가용성 리스크 감소',
+          'Shadow DOM 스타일 격리 시스템을 설계·구현해 CSS 충돌 민원 0건 달성',
+          'Next.js + Tailwind CSS로 프론트엔드를 리빌딩해 온보딩 시간을 1주에서 2일로 단축',
+          '정적 프리렌더링 + CDN 캐싱 + 파일 해싱 기반 JAMstack 전략으로 배포 안정성 개선',
+          '카페24 스토어 앱과 공공기관 B2G 제품의 프론트엔드 설계부터 출시까지 담당',
         ],
-        techStack: ['Python', '성능개선', 'Algorithm Optimization'],
+        techStack: ['Next.js', 'Tailwind CSS', 'Shadow DOM', 'JAMstack', 'B2G'],
       },
       {
-        title: '웹 삽입형 스크립트 구조 개선 및 고객사 스타일 충돌 제거',
+        title: '다듬 솔루션, 텍스트 처리 파이프라인 12배 개선',
         summary:
-          '키워드 인덱싱 솔루션 프론트엔드 리뉴얼 \n\n레거시는 순수 HTML/CSS/JS 구조로 확장성과 유지보수가 어려워 신규 기능 개발이 매번 비용이 큰 구조였습니다. \n특히 고객사의 웹페이지에 삽입되는 스크립트가 !important 스타일로 CSS를 덮어쓰는 문제로 스타일 충돌 및 UI 깨짐 현상이 발생했습니다. \n이 문제를 근본적으로 해결하기 위해 Shadow DOM 구조를 도입해 CSS 격리와 함께 결합도를 제거 Next.js 기반으로 구조 전환하며 유지보수성과 코드 가독성을 향상시켰습니다.',
+          'Selenium 기반 렌더링 후 텍스트 추출 구조는 100페이지 처리에 60분이 걸려 데모와 납품 일정에 부담이 컸습니다. \n\n텍스트 분석 단계에 렌더링이 꼭 필요한지부터 다시 검토하고 병목을 제거하는 방향으로 파이프라인을 재설계했습니다.',
         descriptions: [
-          'Shadow DOM 기반 스타일 캡슐화 → 고객사 CSS 충돌 100% 제거 \n→ 스타일 깨짐 관련 고객사 민원 0건 달성',
-          'Next.js + Tailwind CSS 구조로 리빌딩 → 가독성과 일관성 확보',
-          '코드 컨벤션 설계 주도 → 신규 인력 온보딩 시간 2주 → 1주 단축',
-          '카페24 스토어 앱, 공공기관 대상 B2B 런칭 성공적 완료',
+          'Selenium 의존 구조를 HTTP 수집 + 비트마스킹 + 아호-코라식 기반으로 전환',
+          '100페이지 처리 시간을 60분에서 5분으로 단축해 12배 성능 개선',
+          '데이터 처리 단계별 책임을 분리해 결합도를 낮추고 유지보수 예측 가능성 확보',
+          'Docker 컨테이너화로 배포 환경을 표준화해 운영 편차 축소',
         ],
-        techStack: ['Next.js', 'Tailwind CSS', 'Shadow DOM', '컨벤션 설계', 'B2B 런칭'],
+        techStack: ['Python', 'Aho-Corasick', 'Bitmasking', 'Docker', 'Performance'],
+      },
+    ],
+  },
+  {
+    company: 'Branvip',
+    position: 'Freelance Full-stack Developer',
+    startDate: '2021.10',
+    endDate: '2021.11',
+    description:
+      '짧은 기간이었지만, 아이디어를 실제로 쓰이는 MVP로 바꾸는 속도와 균형 감각을 단단하게 만든 프로젝트였습니다. \n설계부터 배포까지 전 과정을 혼자 책임지며 완성도와 납기 사이에서 무엇을 먼저 지켜야 하는지 선명하게 배웠습니다.',
+    projects: [
+      {
+        title: '특허청 등록 로고상표 검색 서비스 MVP',
+        summary:
+          '1개월이라는 제한된 시간 안에 사용자 문제를 검증할 수 있는 기능 단위를 빠르게 정의했습니다. \n\n핵심 사용 시나리오에 집중해 불필요한 복잡도를 덜고, 실제 배포 가능한 형태로 마무리하는 데 집중했습니다.',
+        descriptions: [
+          'React + Django 기반으로 검색 플로우와 관리 기능을 설계·구현',
+          'Naver Cloud Platform 환경에 배포해 운영 가능한 MVP 완성',
+          '기획, 개발, 배포까지 전 과정을 1인으로 수행',
+        ],
+        techStack: ['React', 'Django', 'Naver Cloud Platform', 'MVP'],
       },
     ],
   },
@@ -85,29 +134,19 @@ const resumeDatas = [
     startDate: '2019.01',
     endDate: '2021.04',
     description:
-      'IBK 챗봇 서비스 유지보수, 챗봇 백오피스 프론트엔드 개발 \n문서화의 부재가 협업 효율에 미치는 영향을 실감하면서 읽는 사람의 입장에서 코드와 설명을 구성하는 습관이 생겼습니다. \n운영 도구를 직접 설계하면서, 비개발자와 협업 가능한 인터페이스의 중요성을 깨달았고 기술적 해결뿐 아니라 업무 흐름 전체를 고려한 설계로 사고가 확장되었습니다.',
+      '금융 도메인 챗봇을 운영하면서 기능 구현만으로는 문제가 해결되지 않는다는 걸 처음 크게 체감했습니다. \nAPI 일관성, 운영자 도구, 도메인 언어 처리처럼 팀 바깥의 사용자까지 포함해 설계해야 서비스가 안정된다는 기준을 세운 시기였습니다. \n코드 가독성과 운영 흐름을 함께 다루는 습관이 이때 자리 잡았습니다.',
     projects: [
       {
-        title: '코드 일관성 재정립 및 모듈 리팩토링을 통한 유지보수성 확보',
+        title: 'IBK 챗봇, 백오피스와 API 운영 구조 정리',
         summary:
-          'IBK 챗봇 서비스 유지보수 \n\nREST API 기반 레거시 코드에는 불명확한 주석, 명명 불일치, 구조 일관성 부족 등 가독성과 예측 가능성을 해치는 요인이 많았습니다. \n문제의 해결을 위해서 주석 재작성 및 기능별 단위 모듈화 리팩토링을 주도했습니다.',
+          '운영 도구가 부족해 데이터 확인과 패턴 관리가 개발자 의존적으로 굴러가던 시기였습니다. \n\n운영자가 직접 다룰 수 있는 인터페이스를 만들고 API 구조를 정돈해 반복 업무의 마찰을 줄이는 데 집중했습니다.',
         descriptions: [
-          '주석 전면 재작성 → 코드 가독성과 문서화 품질 향상',
-          '비정형 API 구조를 표준화 → 반환 타입과 네이밍 일관성 확보',
-          '낮은 응집도 영역부터 모듈화 리팩토링 → 예측 가능성 향상',
+          'React 기반 백오피스를 구축해 상담 데이터 분석 업무 효율 개선',
+          'REST API 레거시를 모듈 단위로 분리하고 반환 타입·네이밍 규칙 정리',
+          '정규표현식 관리 UI를 도입해 운영자의 self-service 범위를 확대',
+          'Rasa + Mecab 커스텀 사전으로 금융 도메인 형태소 인식률 개선',
         ],
-        techStack: ['리팩토링', '온보딩개선', '문서화'],
-      },
-      {
-        title: '운영 효율 강화를 위한 도구 내재화 및 한글화 커스터마이징',
-        summary:
-          '챗봇 백오피스 프론트엔드 개발 \n\n기존 챗봇은 관리도구가 미흡하여 데이터 분석 및 패턴 관리의 생산성이 떨어지고 담당 개발자 의존도가 매우 높은 상태였습니다. \n문제의 해결을 위해서 React 기반 백오피스를 설계 단계부터 참여하여 구축하였고 정규표현식 관리 기능과 상담 이력 가시화 도구를 내재화했습니다. \nRasa 기반 오픈소스에 Mecab 커스텀 사전을 적용하여 도메인별 형태소 인식률을 개선하고 운영 피드백 플로우를 가속화했습니다.',
-        descriptions: [
-          'React 기반 백오피스 개발 → 상담 데이터 분석 생산성 향상',
-          'Rasa 오픈소스 커스터마이징 (Mecab 커스텀 사전) → 도메인별 형태소 인식률 개선 \n→ 변경 전후 도메인별 형태소 오인식 건수를 비교하여 산출',
-          '정규표현식 관리 UI 제공 → 운영자 편의성 및 에러율 감소',
-        ],
-        techStack: ['React', 'Rasa', 'Mecab', '백오피스'],
+        techStack: ['React', 'REST API', 'Rasa', 'Mecab', 'Backoffice'],
       },
     ],
   },
@@ -132,7 +171,7 @@ export default function ResumePage() {
               <h2 className="border-b pb-1 text-xs font-semibold tracking-wider text-gray-500 uppercase">Identity</h2>
               <div>
                 <p className="text-colPick text-lg font-medium">Owen</p>
-                <p className="text-sm text-gray-600">Experience Architect (희망)</p>
+                <p className="text-sm text-gray-600">Senior Frontend Developer</p>
                 <p className="mt-1 text-xs text-gray-500">Seoul, Korea</p>
               </div>
             </div>
@@ -140,7 +179,7 @@ export default function ResumePage() {
             <div className="space-y-3">
               <h2 className="border-b pb-1 text-xs font-semibold tracking-wider text-gray-500 uppercase">Position</h2>
               <div>
-                <p className="text-colPick text-lg font-medium">Frontend Engineer</p>
+                <p className="text-colPick text-lg font-medium">Senior Frontend Developer</p>
               </div>
             </div>
 
@@ -161,8 +200,16 @@ export default function ResumePage() {
                   className="text-colPick hover:text-main block text-sm underline transition-colors">
                   me@owen.kr
                 </a>
+                <a href={blogLink} className="text-colPick hover:text-main block text-sm underline transition-colors">
+                  blog.owen.kr
+                </a>
                 <a href={githubLink} className="text-colPick hover:text-main block text-sm underline transition-colors">
                   github.com/owen-ever
+                </a>
+                <a
+                  href={linkedInLink}
+                  className="text-colPick hover:text-main block text-sm underline transition-colors">
+                  linkedin.com/in/chanhojeon95
                 </a>
               </div>
             </div>
