@@ -17,6 +17,7 @@
 # ai agent
 /.agent/
 /.claude/
+/.omo/
 
 # sitemap
 /public/sitemap*.xml
