@@ -55,7 +55,7 @@ const resumeDatas = [
     company: '팀벨',
     position: 'Frontend Engineer',
     startDate: '2024.01',
-    endDate: 'Present',
+    endDate: '2026.04',
     description:
       'AI 음성기록 솔루션 리뉴얼, RAG 기반 대화엔진 초기 개발 \n복잡한 요구와 빠른 기능 추가 속도 속에서 구조적 설계 없이는 유지보수가 불가능하다는 것을 체감했습니다. \n역할을 분리하고 응집도를 높이면 사이드이펙트를 줄일 수 있다는 점을 직접 경험하며 변경 용이성을 우선한 구조 설계의 중요성을 내재화하게 되었습니다. \n협업과 변화에 강한 시스템은 추상화와 컨벤션 설계에서 비롯된다는 깨달음을 얻었습니다.',
     projects: [
