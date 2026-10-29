@@ -75,32 +75,15 @@ bun run lint-format
 
 ## 배포
 
-로컬에서 빌드한 뒤 linux/amd64 도커 이미지를 만들어 NAS 레지스트리(`docker.owen.kr`)에 push합니다. 블로그는 NAS의 Container Manager 프로젝트로 실행합니다.
-
-### 1. 이미지 빌드와 push (로컬)
-
-`dockerbuild.sh`는 `docker-compose.yaml`로 이미지를 빌드합니다. `docker-compose-example.yaml`을 `docker-compose.yaml`로 복사한 뒤 실행합니다. 이미지 태그는 `package.json`의 `version`입니다. 이미 push한 태그는 덮어쓰지 않습니다.
+범용적인 적용을 위해서 로컬 빌드후 도커 이미지화를 통해 nodejs를 이용해서 배포를 진행
 
 ```
-cp docker-compose-example.yaml docker-compose.yaml
-./dockerbuild.sh docker.owen.kr
+# 1. 도커 이미지화
+./dockerbuild.sh
+
+# 2. 실행
+docker-compose up -d
 ```
-
-### 2. NAS 실행 (Container Manager)
-
-1. NAS에 프로젝트 폴더를 만들고 그 안에 `posts`, `images` 폴더를 만듭니다.
-2. Container Manager에서 프로젝트를 만들고 `docker-compose.nas.yaml` 내용을 붙여 넣습니다.
-3. 값을 바꿀 때는 `.env.example`을 프로젝트 폴더에 `.env`로 복사한 뒤 고칩니다.
-
-| 값                     | 기본값                     | 뜻                                                  |
-| ---------------------- | -------------------------- | --------------------------------------------------- |
-| `EVER_BLOG_IMAGE`      | `docker.owen.kr/ever-blog` | 레지스트리 이미지 이름                              |
-| `EVER_BLOG_TAG`        | 현재 릴리스 버전           | 실행할 이미지 태그                                  |
-| `EVER_BLOG_PORT`       | `3000`                     | NAS에서 여는 포트                                   |
-| `EVER_BLOG_POSTS_DIR`  | `./posts`                  | 포스트 폴더 (컨테이너 `/posts`)                     |
-| `EVER_BLOG_IMAGES_DIR` | `./images`                 | 포스트 이미지 폴더 (컨테이너 `/posts/images`)       |
-
-새 버전을 배포할 때는 `EVER_BLOG_TAG`를 바꾸고 프로젝트를 다시 빌드(이미지 다시 받기)합니다.
 
 ## 참고
 
