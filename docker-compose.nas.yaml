@@ -2,7 +2,7 @@
 # 상대 경로는 프로젝트 폴더 기준입니다. 값 변경은 .env.example과 README의 '배포' 절을 참고합니다.
 services:
   ever-blog:
-    image: ${EVER_BLOG_IMAGE:-docker.owen.kr/ever-blog}:${EVER_BLOG_TAG:-0.2.2}
+    image: ${EVER_BLOG_IMAGE:-docker.owen.kr/ever-blog}:${EVER_BLOG_TAG:-0.3.0}
     container_name: ever-blog
     ports:
       - '${EVER_BLOG_PORT:-3000}:3000'
