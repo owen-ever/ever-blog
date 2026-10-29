@@ -1,6 +1,6 @@
 {
   "name": "ever-blog",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -10,6 +10,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "format-lint": "bun run format && bun run lint",
+    "test": "bun test scripts",
+    "check:content": "bun scripts/content-checks.ts",
     "prepare": "husky"
   },
   "dependencies": {
@@ -29,6 +31,7 @@
     "@eslint/eslintrc": "^3",
     "@next/eslint-plugin-next": "^15.3.0",
     "@tailwindcss/postcss": "^4",
+    "@types/bun": "^1.4.4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
