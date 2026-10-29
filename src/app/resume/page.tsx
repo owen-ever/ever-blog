@@ -196,9 +196,9 @@ const resumeDatas = [
           'Next.js + Tailwind CSS로 프론트엔드를 리빌딩해 온보딩 시간을 1주에서 2일로 단축',
           'JAMstack 아키텍처 기반으로 정적 프리렌더링 + CDN 캐싱 + 클라이언트 사이드 API 호출을 적용해 서버 부하 절감',
           '배포 시 CDN 캐시 무효화 이슈를 파일명 해싱 전략으로 해결',
-          '카페24 스토어 앱 + 공공기관 B2B 제품의 프론트엔드를 설계부터 출시까지 담당',
+          '카페24 스토어 앱 + 공공기관 B2G 제품의 프론트엔드를 설계부터 출시까지 담당',
         ],
-        techStack: ['Next.js', 'Tailwind CSS', 'Shadow DOM', 'JAMstack', 'CDN'],
+        techStack: ['Next.js', 'Tailwind CSS', 'Shadow DOM', 'JAMstack', 'B2G'],
       },
       {
         title: '다듬 솔루션 (공공언어 개선), 처리 시간 12배 개선',
