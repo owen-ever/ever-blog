@@ -11,6 +11,7 @@
     "format:check": "prettier --check .",
     "format-lint": "bun run format && bun run lint",
     "test": "bun test scripts",
+    "test:mutation": "bun scripts/mutation.ts",
     "check:content": "bun scripts/content-checks.ts",
     "prepare": "husky"
   },

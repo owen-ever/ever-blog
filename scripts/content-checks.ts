@@ -64,16 +64,96 @@ export function localAccountNames(): string[] {
   return [...names];
 }
 
-function listRepoFiles(): string[] {
-  const result = Bun.spawnSync(['git', 'ls-files', '--cached', '--others', '--exclude-standard', '-z']);
-  if (result.exitCode !== 0) throw new Error(`git ls-files failed: ${result.stderr.toString()}`);
-  return result.stdout.toString().split('\0').filter(Boolean);
+function git(args: string[], cwd: string, stdin?: string): Buffer {
+  const result = Bun.spawnSync(['git', ...args], { cwd, stdin: stdin === undefined ? undefined : Buffer.from(stdin) });
+  if (result.exitCode !== 0) throw new Error(`git ${args[0]} failed: ${result.stderr.toString()}`);
+  return result.stdout;
+}
+
+function refExists(ref: string, cwd: string): boolean {
+  return Bun.spawnSync(['git', 'rev-parse', '--verify', '-q', `${ref}^{commit}`], { cwd }).exitCode === 0;
+}
+
+// Scan scope: only the current branch (HEAD) and dev. Other local and remote-tracking branches are never scanned.
+export function scanRefs(cwd = process.cwd()): string[] {
+  const refs = refExists('HEAD', cwd) ? ['HEAD'] : [];
+  const dev = ['refs/heads/dev', 'refs/remotes/origin/dev'].find(ref => refExists(ref, cwd));
+  if (dev) refs.push(dev);
+  return refs;
+}
+
+function listRepoFiles(cwd: string): string[] {
+  return git(['ls-files', '--cached', '--others', '--exclude-standard', '-z'], cwd)
+    .toString()
+    .split('\0')
+    .filter(Boolean);
+}
+
+function historyCommitIssues(refs: string[], cwd: string, names: string[]): Issue[] {
+  const log = git(['log', '-z', '--format=%H%n%B', ...refs, '--'], cwd).toString();
+  return log
+    .split('\0')
+    .filter(Boolean)
+    .flatMap(entry => {
+      const newline = entry.indexOf('\n');
+      return findPrivacyIssues(entry.slice(newline + 1), `commit ${entry.slice(0, newline)}`, names);
+    });
+}
+
+function historyTagIssues(refs: string[], cwd: string, names: string[]): Issue[] {
+  const tags = new Map<string, string>();
+  for (const ref of refs) {
+    const out = git(
+      ['for-each-ref', `--merged=${ref}`, '--format=%(refname:short)%00%(contents)%1e', 'refs/tags'],
+      cwd,
+    );
+    for (const entry of out.toString().split('\x1e')) {
+      const [name, contents = ''] = entry.replace(/^\n/, '').split('\0');
+      if (name) tags.set(name, `${name}\n${contents}`);
+    }
+  }
+  return [...tags].flatMap(([name, text]) => findPrivacyIssues(text, `tag ${name}`, names));
+}
+
+function historyBlobIssues(refs: string[], cwd: string, names: string[]): Issue[] {
+  const paths = new Map<string, string>();
+  for (const line of git(['rev-list', '--objects', ...refs, '--'], cwd)
+    .toString()
+    .split('\n')) {
+    const space = line.indexOf(' ');
+    if (space > 0 && !paths.has(line.slice(0, space))) paths.set(line.slice(0, space), line.slice(space + 1));
+  }
+  if (paths.size === 0) return [];
+  const out = git(['cat-file', '--batch'], cwd, [...paths.keys()].join('\n') + '\n');
+  const issues: Issue[] = [];
+  let offset = 0;
+  while (offset < out.length) {
+    const headerEnd = out.indexOf(10, offset);
+    const [sha, type, size] = out.subarray(offset, headerEnd).toString().split(' ');
+    const body = out.subarray(headerEnd + 1, headerEnd + 1 + Number(size));
+    offset = headerEnd + 1 + Number(size) + 1;
+    if (type !== 'blob' || body.includes(0)) continue;
+    issues.push(...findPrivacyIssues(body.toString('utf8'), `${paths.get(sha)} @ ${sha.slice(0, 12)}`, names));
+  }
+  return issues;
+}
+
+// Commits, tags and every file version reachable from HEAD and dev.
+export function findHistoryIssues(names: string[] = [], cwd = process.cwd()): Issue[] {
+  const refs = scanRefs(cwd);
+  if (refs.length === 0) return [];
+  return [
+    ...historyCommitIssues(refs, cwd, names),
+    ...historyTagIssues(refs, cwd, names),
+    ...historyBlobIssues(refs, cwd, names),
+  ];
 }
 
 function runCli() {
+  const cwd = process.cwd();
   const names = localAccountNames();
   const issues: Issue[] = [];
-  for (const file of listRepoFiles()) {
+  for (const file of listRepoFiles(cwd)) {
     let text: string;
     try {
       text = readFileSync(file, 'utf8');
@@ -83,6 +163,7 @@ function runCli() {
     if (text.includes('\0')) continue;
     issues.push(...findPrivacyIssues(text, file, names));
   }
+  issues.push(...findHistoryIssues(names, cwd));
   issues.push(...findForbiddenResumeKeywords(readFileSync(RESUME_PAGE, 'utf8')));
 
   if (issues.length > 0) {

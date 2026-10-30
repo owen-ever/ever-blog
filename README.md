@@ -26,6 +26,18 @@ bun run lint-format
 
 > 커밋 이전에 위의 명령어를 실행하고 커밋을 진행
 
+### 개인정보 검사 (dev 머지 전)
+
+```
+bun test scripts        # 검사 스크립트 단위 테스트
+bun run check:content   # 개인정보·이력서 금지어 검사
+bun run test:mutation   # 뮤테이션 테스트 (새 무작위 시드, 결과는 .omo/evidence/)
+```
+
+- `check:content`는 작업 트리 파일과, 현재 브랜치(HEAD)와 `dev`(없으면 `origin/dev`)에서 닿는 커밋 메시지·태그·모든 파일 버전을 검사합니다.
+- 다른 로컬 브랜치와 다른 원격 추적 브랜치, 그 브랜치에만 있는 태그는 검사하지 않습니다.
+- 같은 시드로 다시 실행하려면 `bun run test:mutation <시드>`를 씁니다.
+
 ## 주요 기술 스택
 
 - [NextJS](https://nextjs.org/docs)

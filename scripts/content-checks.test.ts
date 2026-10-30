@@ -6,8 +6,10 @@ import {
   PRIVACY_RULES,
   RESUME_PAGE,
   findForbiddenResumeKeywords,
+  findHistoryIssues,
   findPrivacyIssues,
   localAccountNames,
+  scanRefs,
 } from './content-checks';
 
 // Fixtures are assembled from pieces so this file never matches the scanner itself.
@@ -84,6 +86,92 @@ describe('privacy scanner', () => {
 
   test('local account names include the current user', () => {
     expect(localAccountNames()).toContain(userInfo().username);
+  });
+});
+
+// Temporary repository: main -> dev -> unit branch (checked out), plus an unrelated branch `other`.
+function withRepo(body: (repo: string, git: (...args: string[]) => string) => void) {
+  const repo = mkdtempSync(join(tmpdir(), 'ever-blog-scan-scope-'));
+  const git = (...args: string[]) => {
+    const config = ['user.name=t', 'user.email=t@example.com', 'commit.gpgsign=false', 'tag.gpgsign=false'];
+    const result = Bun.spawnSync(['git', ...config.flatMap(c => ['-c', c]), ...args], { cwd: repo });
+    if (result.exitCode !== 0) throw new Error(result.stderr.toString());
+    return result.stdout.toString().trim();
+  };
+  try {
+    git('init', '-q', '-b', 'main');
+    mkdirSync(join(repo, 'src/app/resume'), { recursive: true });
+    writeFileSync(join(repo, RESUME_PAGE), "const position = 'AI Engineer';\n");
+    git('add', '.');
+    git('commit', '-q', '--no-verify', '-m', 'init');
+    git('branch', 'dev');
+    git('checkout', '-q', '-b', 'other');
+    writeFileSync(join(repo, 'leak.md'), fixtures['internal-host']);
+    git('add', '.');
+    git('commit', '-q', '--no-verify', '-m', `leak ${fixtures['private-ip']}`);
+    git('tag', '-a', 'other-tag', '-m', fixtures['private-ip']);
+    git('update-ref', 'refs/remotes/origin/feature', 'other');
+    git('checkout', '-q', 'dev');
+    git('checkout', '-q', '-b', 'fix/unit');
+    body(repo, git);
+  } finally {
+    rmSync(repo, { recursive: true, force: true });
+  }
+}
+
+const cliIn = (repo: string) => Bun.spawnSync(['bun', join(import.meta.dir, 'content-checks.ts')], { cwd: repo });
+
+describe('privacy scan scope (HEAD and dev only)', () => {
+  test('[mutation-watch] issues on other local or remote-tracking branches and their tags do not fail', () => {
+    withRepo(repo => {
+      expect(findHistoryIssues([], repo)).toEqual([]);
+      expect(cliIn(repo).exitCode).toBe(0);
+    });
+  });
+
+  test('[mutation-watch] a file version reachable from dev fails even after it was deleted', () => {
+    withRepo((repo, git) => {
+      git('checkout', '-q', 'dev');
+      writeFileSync(join(repo, 'notes.md'), fixtures['internal-host']);
+      git('add', '.');
+      git('commit', '-q', '--no-verify', '-m', 'add');
+      git('rm', '-q', 'notes.md');
+      git('commit', '-q', '--no-verify', '-m', 'remove');
+      git('checkout', '-q', 'fix/unit');
+      const issues = findHistoryIssues([], repo);
+      expect(issues.map(issue => [issue.rule, issue.file.split(' @ ')[0], issue.line])).toEqual([
+        ['internal-host', 'notes.md', 1],
+      ]);
+      const failed = cliIn(repo);
+      expect(failed.exitCode).toBe(1);
+      expect(failed.stderr.toString()).toContain('[internal-host]');
+    });
+  });
+
+  test('[mutation-watch] a commit message on HEAD fails', () => {
+    withRepo((repo, git) => {
+      git('commit', '-q', '--no-verify', '--allow-empty', '-m', `title\n\nhost ${fixtures['private-ip']}`);
+      const sha = git('rev-parse', 'HEAD');
+      expect(findHistoryIssues([], repo)).toEqual([
+        { rule: 'private-ip', file: `commit ${sha}`, line: 3, match: fixtures['private-ip'] },
+      ]);
+    });
+  });
+
+  test('an annotated tag reachable from HEAD fails', () => {
+    withRepo((repo, git) => {
+      git('tag', '-a', 'v9', '-m', `note ${fixtures['internal-host']}`);
+      expect(findHistoryIssues([], repo).map(issue => [issue.rule, issue.file])).toEqual([['internal-host', 'tag v9']]);
+    });
+  });
+
+  test('scan refs are HEAD and dev, with origin/dev as fallback', () => {
+    withRepo((repo, git) => {
+      expect(scanRefs(repo)).toEqual(['HEAD', 'refs/heads/dev']);
+      git('update-ref', 'refs/remotes/origin/dev', 'dev');
+      git('branch', '-q', '-D', 'dev');
+      expect(scanRefs(repo)).toEqual(['HEAD', 'refs/remotes/origin/dev']);
+    });
   });
 });
 
